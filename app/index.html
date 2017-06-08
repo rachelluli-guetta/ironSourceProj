@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag And Drop!</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+
+<div id="dropZone" align="center" class="drop-box-wrapper">
+    <form class="drop-form" method="post" action="" enctype="multipart/form-data">
+        <div class="drop-box-input-wrapper">
+            <input class="drop-box-input" type="file" id="dropped-image"/>
+            <label id="drop-image-here-lbl" for="dropped-image">Drop image here</label>
+        </div>
+    </form>
+</div>
+
+<div id="thumbnailsContainer" class="thumbnails-container">
+
+</div>
+
+<script src="js/DragAndDropController.js"></script>
+<script src="js/ImageScaler.js"></script>
+<script src="js/Storage.js"></script>
+<script src="js/ThumbnailsController.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.drop-box-wrapper {
+    border: 2px solid #757575;
+    outline: 2px dashed #757575;
+    outline-offset: -5px;
+    margin: auto;
+    width: 60%;
+    height: 200px;
+}
+
+.drop-box-input {
+    display: none;
+}
+
+.element-dragged {
+    background: #EEEEEE;
+}
+
+#drop-image-here-lbl {
+    font-family: Helvetica;
+    font-size: 25px;
+    color: #757575;
+}
+
+.thumbnails-container {
+    border: 2px solid pink;
+}
+
+.thumbnail {
+    float: left;
+}
