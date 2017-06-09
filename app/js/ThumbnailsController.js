@@ -5,7 +5,7 @@
 loadThumbnailsFromLocalStorage();
 
 function addOrUpdateThumbnailElement(img) {
-    if (storage.getItem(img.name)) {
+    if (getThumbnail(img.name)) {
         //If the item is already stored
         //then it was loaded and added to
         //the thumbnails, should only
@@ -16,7 +16,7 @@ function addOrUpdateThumbnailElement(img) {
         createThumbnailElement(img);
     }
 
-    storeImg(img.name, img.src);
+    storeThumbnail(img.name, img.src);
 }
 
 function loadThumbnailsFromLocalStorage() {
@@ -60,6 +60,6 @@ function removeThumbnailFactory(thumbnailElementId) {
 function removeThumbnail(thumbnailElementId) {
     var thumbnailElement = document.getElementById(thumbnailElementId);
     var img = thumbnailElement.firstElementChild;
-    removeImgFromStorage(img.id);
+    removeThumbnailFromStorage(img.id);
     thumbnailsContainer.removeChild(thumbnailElement);
 }

@@ -6,14 +6,19 @@
 //thumbnails from local storage
 var THUMBNAILS_PREFIX = 'thumbnails/';
 
-function storeImg(imgName, imgData){
+function storeThumbnail(imgName, imgData){
     var storage = window.localStorage;
     storage.setItem(THUMBNAILS_PREFIX + imgName, imgData);
 }
 
-function removeImgFromStorage(imgName) {
+function removeThumbnailFromStorage(imgName) {
     var storage = window.localStorage;
     storage.removeItem(THUMBNAILS_PREFIX + imgName);
+}
+
+function getThumbnail(imgName) {
+    var storage = window.localStorage;
+    return storage.getItem(THUMBNAILS_PREFIX + imgName);
 }
 
 function getAllThumbnails() {
