@@ -60,6 +60,6 @@ function removeThumbnailFactory(thumbnailElementId) {
 function removeThumbnail(thumbnailElementId) {
     var thumbnailElement = document.getElementById(thumbnailElementId);
     var img = thumbnailElement.firstElementChild;
-    removeThumbnailFromStorage(img.id);
     thumbnailsContainer.removeChild(thumbnailElement);
+    removeThumbnailFromStorage(img.id);
 }
