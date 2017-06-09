@@ -20,10 +20,11 @@ function addOrUpdateThumbnailElement(img) {
 }
 
 function loadThumbnailsFromLocalStorage() {
-    for (var item in storage) {
+    var thumbnails = getAllThumbnails();
+    for (var item in thumbnails) {
         var img = new Image();
         img.id = item;
-        img.src = storage[item];
+        img.src = thumbnails[item];
 
         createThumbnailElement(img);
     }
