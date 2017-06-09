@@ -35,26 +35,30 @@ dropZone.addEventListener('drop', function(e) {
         var file = files[i];
         var img = new Image();
 
-        img.onload = resizeImg;
+        img.name = file.name;
+        img.onload = resizeImgAndCreateThumbnail;
 
         var reader = new FileReader();
 
         reader.readAsDataURL(file);
 
         reader.onload = function() {
+            console.log('Reader loaded img..');
             img.src = reader.result;
         }
     }
 
+    //Reset UI after dropping
     dropZone.classList.remove('element-dragged');
 });
 
 
-function resizeImg() {
-    console.log('Resizing image..');
+function resizeImgAndCreateThumbnail() {
+
+    console.log('Resizing image..' + this.name);
 
     //this is bind to the img that is loading when the function is called
-    var img = this;
+    var originalImg = this;
     var canvas = document.createElement("canvas");
 
     //Resize the img to fixed size 100x100px
@@ -62,19 +66,13 @@ function resizeImg() {
     canvas.height = IMG_SIZE;
 
     var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0, IMG_SIZE, IMG_SIZE);
+    ctx.drawImage(originalImg, 0, 0, IMG_SIZE, IMG_SIZE);
 
     var dataurl = canvas.toDataURL("image/png");
-    img.src= dataurl;
 
-    // window.localStorage.setItem( "image-base64", e.target.result );
-    createThumbnailElement(img);
-}
+    var resizedImg = new Image();
+    resizedImg.name = originalImg.name;
+    resizedImg.src= dataurl;
 
-
-function createThumbnailElement(img) {
-    var imgContainer = document.createElement('div');
-    imgContainer.classList.add('img-container');
-    imgContainer.appendChild(img);
-    thumbnailsContainer.appendChild(imgContainer);
+    createThumbnailElement(resizedImg, dataurl);
 }
