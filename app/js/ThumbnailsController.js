@@ -5,18 +5,18 @@
 loadThumbnailsFromLocalStorage();
 
 function addOrUpdateThumbnailElement(img) {
-    if (getThumbnail(img.name)) {
+    if (getThumbnail(img.id)) {
         //If the item is already stored
         //then it was loaded and added to
         //the thumbnails, should only
         //update its data here
-        var oldImg = document.getElementById(img.name);
+        var oldImg = document.getElementById(img.id);
         oldImg.src = img.src;
     } else {
         createThumbnailElement(img);
     }
 
-    storeThumbnail(img.name, img.src);
+    storeThumbnail(img.id, img.src);
 }
 
 function loadThumbnailsFromLocalStorage() {

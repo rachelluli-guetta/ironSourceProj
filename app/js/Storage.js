@@ -27,7 +27,10 @@ function getAllThumbnails() {
 
     Object.keys(storage).forEach(function(key) {
         if (key.startsWith(THUMBNAILS_PREFIX)) {
-            thumbnails[key] = storage[key];
+            //Remove thumbnails prefix as it is
+            //used for storing purposes only
+            var thumbnailKey = key.replace(THUMBNAILS_PREFIX, "");
+            thumbnails[thumbnailKey] = storage[key];
         }
     });
 

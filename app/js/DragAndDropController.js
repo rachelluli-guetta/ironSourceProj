@@ -70,7 +70,7 @@ function resizeImgAndCreateThumbnail() {
     var dataurl = canvas.toDataURL("image/png");
 
     var resizedImg = new Image();
-    resizedImg.name = originalImg.name;
+    resizedImg.id = originalImg.name;
     resizedImg.src= dataurl;
 
     addOrUpdateThumbnailElement(resizedImg);
