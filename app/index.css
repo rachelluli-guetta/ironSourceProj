@@ -1,6 +1,10 @@
+body {
+    color: #757575;
+}
+
 .drop-box-wrapper {
-    border: 2px solid #757575;
-    outline: 2px dashed #757575;
+    border: 2px solid;
+    outline: 2px dashed;
     outline-offset: -5px;
     margin: auto;
     width: 60%;
@@ -18,13 +22,10 @@
 #drop-image-here-lbl {
     font-family: Helvetica;
     font-size: 25px;
-    color: #757575;
 }
 
 .thumbnails-container {
+    display: flex;
     border: 2px solid pink;
-}
-
-.thumbnail {
-    float: left;
+    margin-top: 20px;
 }
