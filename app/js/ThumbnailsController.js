@@ -4,25 +4,19 @@
 
 loadThumbnailsFromLocalStorage();
 
-function createThumbnailElement(img, dataUrl) {
-
+function addOrUpdateThumbnailElement(img) {
     if (storage.getItem(img.name)) {
         //If the item is already stored
         //then it was loaded and added to
         //the thumbnails, should only
         //update its data here
         var oldImg = document.getElementById(img.name);
-        oldImg.src = dataUrl;
+        oldImg.src = img.src;
     } else {
-        img.src = dataUrl;
-        var imgContainer = document.createElement('div');
-        imgContainer.classList.add('img-container');
-        imgContainer.appendChild(img);
-        thumbnailsContainer.appendChild(imgContainer);
+        createThumbnailElement(img);
     }
 
-    storeImg(img.name, dataUrl);
-
+    storeImg(img.name, img.src);
 }
 
 function loadThumbnailsFromLocalStorage() {
@@ -36,7 +30,6 @@ function loadThumbnailsFromLocalStorage() {
 }
 
 function createThumbnailElement(img) {
-
     //Create a container for the element
     var imgContainer = document.createElement('div');
     imgContainer.id = img.id + '-container';

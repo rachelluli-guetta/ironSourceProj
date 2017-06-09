@@ -54,10 +54,9 @@ dropZone.addEventListener('drop', function(e) {
 
 
 function resizeImgAndCreateThumbnail() {
+    console.log('Resizing image ' + this.name);
 
-    console.log('Resizing image..' + this.name);
-
-    //this is bind to the img that is loading when the function is called
+    //'this' is bind to the img that is loading when the function is called
     var originalImg = this;
     var canvas = document.createElement("canvas");
 
@@ -74,5 +73,5 @@ function resizeImgAndCreateThumbnail() {
     resizedImg.name = originalImg.name;
     resizedImg.src= dataurl;
 
-    createThumbnailElement(resizedImg, dataurl);
+    addOrUpdateThumbnailElement(resizedImg);
 }
