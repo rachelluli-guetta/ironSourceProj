@@ -4,14 +4,11 @@
 
 var storage = window.localStorage;
 
-function storeImg(){
-
+function storeImg(imgName, imgData){
+    storage.setItem(imgName, imgData);
 }
 
-function getAllImages() {
 
-}
-
-function removeImg() {
-
+function removeImgFromStorage(imgName) {
+    storage.removeItem(imgName);
 }

@@ -11,22 +11,17 @@ function createThumbnailElement(img, dataUrl) {
         //then it was loaded and added to
         //the thumbnails, should only
         //update its data here
-
-
-        // debugger
-
         var oldImg = document.getElementById(img.name);
         oldImg.src = dataUrl;
     } else {
         img.src = dataUrl;
-        window.localStorage.setItem(img.name, dataUrl);
         var imgContainer = document.createElement('div');
         imgContainer.classList.add('img-container');
         imgContainer.appendChild(img);
         thumbnailsContainer.appendChild(imgContainer);
     }
 
-    storage.setItem(img.name, dataUrl);
+    storeImg(img.name, dataUrl);
 
 }
 
@@ -36,10 +31,41 @@ function loadThumbnailsFromLocalStorage() {
         img.id = item;
         img.src = storage[item];
 
-        var imgContainer = document.createElement('div');
-        imgContainer.classList.add('img-container');
-        imgContainer.appendChild(img);
-        thumbnailsContainer.appendChild(imgContainer);
+        createThumbnailElement(img);
     }
 }
 
+function createThumbnailElement(img) {
+
+    //Create a container for the element
+    var imgContainer = document.createElement('div');
+    imgContainer.id = img.id + '-container';
+    imgContainer.classList.add('img-container');
+
+    //Insert the thumbnail in the container
+    imgContainer.appendChild(img);
+
+    //Insert a remove button in the container
+    var removeBtn = document.createElement('button');
+    removeBtn.innerHTML = 'x';
+    removeBtn.classList.add('remove-btn');
+    removeBtn.onclick = removeThumbnailFactory(imgContainer.id);
+    imgContainer.appendChild(removeBtn);
+
+    thumbnailsContainer.appendChild(imgContainer);
+}
+
+//Creates a function calling removeThumbnail
+//with the given thumbnail element id
+function removeThumbnailFactory(thumbnailElementId) {
+    return function() {
+        removeThumbnail(thumbnailElementId);
+    }
+}
+
+function removeThumbnail(thumbnailElementId) {
+    var thumbnailElement = document.getElementById(thumbnailElementId);
+    var img = thumbnailElement.firstElementChild;
+    removeImgFromStorage(img.id);
+    thumbnailsContainer.removeChild(thumbnailElement);
+}
