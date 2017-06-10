@@ -7,9 +7,12 @@
 var THUMBNAILS_PREFIX = 'thumbnails/';
 var ThumbnailsStorageManager = {};
 
-ThumbnailsStorageManager.storeThumbnail = function(img){
+ThumbnailsStorageManager.storeThumbnail = function(img, pos){
     var storage = window.localStorage;
-    storage.setItem(THUMBNAILS_PREFIX + img.id, img.src);
+    var thumbnail = { src: img.src, pos: pos};
+    var serializedThumbnail = JSON.stringify(thumbnail)
+
+    storage.setItem(THUMBNAILS_PREFIX + img.id, serializedThumbnail);
 }
 
 ThumbnailsStorageManager.removeThumbnail = function(imgId) {
@@ -19,7 +22,7 @@ ThumbnailsStorageManager.removeThumbnail = function(imgId) {
 
 ThumbnailsStorageManager.getThumbnail = function(imgId) {
     var storage = window.localStorage;
-    return storage.getItem(THUMBNAILS_PREFIX + imgId);
+    return JSON.parse(storage.getItem(THUMBNAILS_PREFIX + imgId));
 }
 
 ThumbnailsStorageManager.getAllThumbnails = function() {
@@ -31,7 +34,7 @@ ThumbnailsStorageManager.getAllThumbnails = function() {
             //Remove thumbnails prefix as it is
             //used for storing purposes only
             var thumbnailKey = key.replace(THUMBNAILS_PREFIX, "");
-            thumbnails[thumbnailKey] = storage[key];
+            thumbnails[thumbnailKey] = JSON.parse(storage[key]);
         }
     });
 
