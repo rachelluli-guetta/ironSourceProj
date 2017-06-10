@@ -17,23 +17,23 @@ function onLoadImage() {
     var image = this;
     var resizedImage = ImageScaler.resizeImgAndCreateThumbnail(image, IMG_SIZE);
 
-    if (getThumbnail(image.id)) {
-        updateThumbnailElement(resizedImage);
+    if (ThumbnailsStorageManager.getThumbnail(image.id)) {
+        ThumbnailsView.updateThumbnailElement(resizedImage);
     } else {
-        createThumbnailElement(thumbnailsContainer, resizedImage, removeThumbnailFromStorage);
+        ThumbnailsView.createThumbnailElement(thumbnailsContainer, resizedImage, ThumbnailsStorageManager.removeThumbnail);
     }
 
-    storeThumbnail(resizedImage);
+    ThumbnailsStorageManager.storeThumbnail(resizedImage);
 }
 
 //Init the page with the thumbnails from the local storage
 function loadThumbnailsFromLocalStorage() {
-    var thumbnails = getAllThumbnails();
+    var thumbnails = ThumbnailsStorageManager.getAllThumbnails();
     for (var item in thumbnails) {
         var img = new Image();
         img.id = item;
         img.src = thumbnails[item];
 
-        createThumbnailElement(thumbnailsContainer, img, removeThumbnailFromStorage);
+        ThumbnailsView.createThumbnailElement(thumbnailsContainer, img, ThumbnailsStorageManager.removeThumbnail);
     }
 }

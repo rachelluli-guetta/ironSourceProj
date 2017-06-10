@@ -2,12 +2,14 @@
  * Created by rachelg on 08/06/2017.
  */
 
-function updateThumbnailElement(img) {
+var ThumbnailsView = {};
+
+ThumbnailsView.updateThumbnailElement = function(img) {
     var oldImg = document.getElementById(img.id);
     oldImg.src = img.src;
 }
 
-function createThumbnailElement(container, img, onRemoveCallback) {
+ThumbnailsView.createThumbnailElement = function(container, img, onRemoveCallback) {
     //Create a container for the element
     var imgContainer = document.createElement('div');
     imgContainer.id = img.id + '-container';
@@ -21,13 +23,13 @@ function createThumbnailElement(container, img, onRemoveCallback) {
     removeBtn.innerHTML = 'x';
     removeBtn.classList.add('remove-btn');
 
-    removeBtn.onclick = removeThumbnail.bind(this, imgContainer.id, onRemoveCallback);
+    removeBtn.onclick = this.removeThumbnail.bind(this, imgContainer.id, onRemoveCallback);
     imgContainer.appendChild(removeBtn);
 
     container.appendChild(imgContainer);
 }
 
-function removeThumbnail(thumbnailElementId, onRemoveCallback) {
+ThumbnailsView.removeThumbnail = function(thumbnailElementId, onRemoveCallback) {
     var thumbnailElement = document.getElementById(thumbnailElementId);
     var img = thumbnailElement.firstElementChild;
     thumbnailElement.remove();

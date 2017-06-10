@@ -5,23 +5,24 @@
 //Prefix to store, retrieve and remove
 //thumbnails from local storage
 var THUMBNAILS_PREFIX = 'thumbnails/';
+var ThumbnailsStorageManager = {};
 
-function storeThumbnail(img){
+ThumbnailsStorageManager.storeThumbnail = function(img){
     var storage = window.localStorage;
     storage.setItem(THUMBNAILS_PREFIX + img.id, img.src);
 }
 
-function removeThumbnailFromStorage(imgId) {
+ThumbnailsStorageManager.removeThumbnail = function(imgId) {
     var storage = window.localStorage;
     storage.removeItem(THUMBNAILS_PREFIX + imgId);
 }
 
-function getThumbnail(imgId) {
+ThumbnailsStorageManager.getThumbnail = function(imgId) {
     var storage = window.localStorage;
     return storage.getItem(THUMBNAILS_PREFIX + imgId);
 }
 
-function getAllThumbnails() {
+ThumbnailsStorageManager.getAllThumbnails = function() {
     var storage = window.localStorage;
     var thumbnails = {};
 

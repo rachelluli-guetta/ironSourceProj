@@ -3,7 +3,7 @@
  */
 
 var ImageScaler = {}
-ImageScaler.resizeImgAndCreateThumbnail = function resizeImgAndCreateThumbnail(originalImg, imgSize) {
+ImageScaler.resizeImgAndCreateThumbnail = function(originalImg, imgSize) {
     //'this' is bind to the img that is loading when the function is called
     var canvas = document.createElement("canvas");
 
