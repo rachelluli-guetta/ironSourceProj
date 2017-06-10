@@ -1,8 +1,12 @@
 /**
  * Created by rachelg on 09/06/2017.
  */
+
+//Get Required Elements
 var dropZone = document.getElementById("dropZone");
 var thumbnailsContainer = document.getElementById("thumbnailsContainer");
+
+//Constants
 var IMG_SIZE = 100;
 
 startApp();
