@@ -6,19 +6,19 @@
 //thumbnails from local storage
 var THUMBNAILS_PREFIX = 'thumbnails/';
 
-function storeThumbnail(imgName, imgData){
+function storeThumbnail(img){
     var storage = window.localStorage;
-    storage.setItem(THUMBNAILS_PREFIX + imgName, imgData);
+    storage.setItem(THUMBNAILS_PREFIX + img.id, img.src);
 }
 
-function removeThumbnailFromStorage(imgName) {
+function removeThumbnailFromStorage(imgId) {
     var storage = window.localStorage;
-    storage.removeItem(THUMBNAILS_PREFIX + imgName);
+    storage.removeItem(THUMBNAILS_PREFIX + imgId);
 }
 
-function getThumbnail(imgName) {
+function getThumbnail(imgId) {
     var storage = window.localStorage;
-    return storage.getItem(THUMBNAILS_PREFIX + imgName);
+    return storage.getItem(THUMBNAILS_PREFIX + imgId);
 }
 
 function getAllThumbnails() {

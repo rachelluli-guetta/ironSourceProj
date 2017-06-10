@@ -17,7 +17,7 @@ ImageScaler.resizeImgAndCreateThumbnail = function resizeImgAndCreateThumbnail(o
     var dataUrl = canvas.toDataURL("image/png");
 
     var resizedImg = new Image();
-    resizedImg.id = originalImg.name;
+    resizedImg.id = originalImg.id;
     resizedImg.src = dataUrl;
 
     return resizedImg;

@@ -2,8 +2,8 @@
  * Created by rachelg on 07/06/2017.
  */
 
-var DragAndDropController = {};
-DragAndDropController.create = function (dropZone, imageProcessingCallback) {
+var DragAndDropView = {};
+DragAndDropView.create = function (dropZone, imageProcessingCallback) {
     initDragOver(dropZone);
     initDragLeave(dropZone);
     initDrop(dropZone, imageProcessingCallback)
@@ -41,7 +41,7 @@ function initDrop(dropZone, imageProcessingCallback) {
             reader.onload = function() {
                 var img = new Image();
 
-                img.name = file.name;
+                img.id = file.name;
                 img.onload = imageProcessingCallback;
                 img.src = reader.result;
             }
